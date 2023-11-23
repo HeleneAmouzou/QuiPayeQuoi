@@ -1,2 +1,3 @@
 .env
 /apps/back/vendor/
+.idea

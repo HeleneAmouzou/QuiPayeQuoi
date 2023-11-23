@@ -14,13 +14,15 @@ services:
         <<: *base-php
         volumes:
             - ./apps:/usr/src/app
-        command: [ "php-fpm" ]
+            - ./apps/back/vendor:/usr/src/app/vendor
+        working_dir: /usr/src/app
+        command: [ "composer", "install" ]
         profiles: ["composer"]
     php:
         <<: *base-php
         volumes:
             - './apps/back:/usr/src/app'
-            - '.env:/usr/src/app/.env'
+            - './apps/back/.env:/usr/src/app/.env'
         restart: unless-stopped
         command: [ "php-fpm" ]
         depends_on:
